@@ -1,13 +1,11 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.${rootArtifactId}.beanbuilderap${artifactId};
+package ${package}.example;
 
-import ${package}.${rootArtifactId}.api.BeanBuilder;
-import lombok.Data;
+import ${package}.api.${annotationName};
 
-@BeanBuilder
-@Data
+@${annotationName}("GeneratedClass")
 public class TestBean {
 
     private Long longField;

@@ -3,10 +3,10 @@
 #set( $symbol_escape = '\' )
 package ${package}.processor.tests;
 
-import ${package}.api.BeanBuilder;
+import ${package}.api.${annotationName};
 
-@BeanBuilder(packageName = "${package}.customPackage")
-public class TestcaseValidUsageWithCustomPackage {
+@${annotationName}("")
+public class TestcaseInvalidUsageWithEmptyValue {
 
     private String field;
 

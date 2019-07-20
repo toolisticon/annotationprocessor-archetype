@@ -9,10 +9,11 @@ import io.toolisticon.annotationprocessortoolkit.tools.corematcher.ValidationMes
 /**
  * Messages used by annotation processors.
  */
-public enum BeanBuilderProcessorMessages implements ValidationMessage {
+public enum ${annotationName}ProcessorMessages implements ValidationMessage {
 
 
-    ERROR_COULD_NOT_CREATE_BUILDER_CLASS("SERVICE_ERROR_001", "Could not create Builder class ${symbol_dollar}{0} : ${symbol_dollar}{1}");
+    ERROR_COULD_NOT_CREATE_CLASS("${annotationName}_ERROR_001", "Could not create class ${symbol_dollar}{0} : ${symbol_dollar}{1}"),
+    ERROR_VALUE_MUST_NOT_BE_EMPTY("${annotationName}_ERROR_002", "Value must not be empty");
 
 
     /**
@@ -30,7 +31,7 @@ public enum BeanBuilderProcessorMessages implements ValidationMessage {
      * @param code    the message code
      * @param message the message text
      */
-    BeanBuilderProcessorMessages(String code, String message) {
+        ${annotationName}ProcessorMessages(String code, String message) {
         this.code = code;
         this.message = message;
     }

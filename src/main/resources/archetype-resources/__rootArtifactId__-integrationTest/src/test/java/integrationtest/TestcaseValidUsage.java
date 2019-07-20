@@ -3,9 +3,9 @@
 #set( $symbol_escape = '\' )
 package ${package}.integrationtest;
 
-import ${package}.api.BeanBuilder;
+import ${package}.api.${annotationName};
 
-@BeanBuilder
+@${annotationName}("GeneratedClass")
 public class TestcaseValidUsage {
 
     private String field;

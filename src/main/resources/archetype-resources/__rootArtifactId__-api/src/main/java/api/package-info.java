@@ -2,6 +2,6 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 /**
- * This package contains all annotations defined by the beanbuilder project.
+ * This package contains all annotations defined by the ${rootArtifactId} project.
  */
 package ${package}.api;

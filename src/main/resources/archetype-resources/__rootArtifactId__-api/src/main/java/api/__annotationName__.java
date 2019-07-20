@@ -9,16 +9,20 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * BeanBuilder annotation.
+ * Can be used to create builder of annotated class.
+ */
 @Retention(RetentionPolicy.SOURCE)
-@Target(value = {ElementType.PACKAGE})
+@Target(value = {ElementType.TYPE})
 @Documented
-public @interface ThirdPartyBeanBuilder {
-
+public @interface ${annotationName} {
     /**
-     * The third party beans to generate builder for.
+     * Value must not be empty String.
      *
-     * @return defaults to empty array
+     * @return the value
      */
-    Class[] value() default {};
+    String value();
+
 
 }

@@ -3,9 +3,9 @@
 #set( $symbol_escape = '\' )
 package ${package}.processor.tests;
 
-import ${package}.api.BeanBuilder;
+import ${package}.api.${annotationName};
 
-@BeanBuilder
+@${annotationName}("Xyz")
 public interface TestcaseInvalidUsageOnInterface {
 
     String doSomething();
