@@ -66,7 +66,7 @@
     <scm>
         <connection>scm:git:git@github.com:toolisticon/annotationprocessor-archetype.git</connection>
         <developerConnection>scm:git:git@github.com:toolisticon/annotationprocessor-archetype.git</developerConnection>
-        <url>git@github.com:toolisticon/toolisticon-annotationprocessor-archetype.git</url>
+        <url>git@github.com:toolisticon/annotationprocessor-archetype.git</url>
     </scm>
 
     <distributionManagement>
