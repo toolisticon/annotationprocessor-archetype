@@ -10,6 +10,12 @@
 
     <name>annotationprocessor-archetype</name>
 
+    <parent>
+        <groupId>io.toolisticon.maven</groupId>
+        <artifactId>maven-oss-parent</artifactId>
+        <version>0.7.0</version>
+    </parent>
+
     <build>
         <extensions>
             <extension>
