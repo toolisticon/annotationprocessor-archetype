@@ -10,16 +10,20 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * BeanBuilder annotation.
- * Can be used to create builder of annotated class.
+ * Annotation for annotation processing.
+ *
+ * TODO: Please change it according to your needs.
+ *
+ * Demo annotation is used to create a class and must contain a non empty value.
+ *
  */
 @Retention(RetentionPolicy.SOURCE)
 @Target(value = {ElementType.TYPE})
 @Documented
 public @interface ${annotationName} {
+
     /**
      * Value must not be empty String.
-     *
      * @return the value
      */
     String value();

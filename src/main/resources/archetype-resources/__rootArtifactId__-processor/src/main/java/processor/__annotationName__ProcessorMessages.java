@@ -11,7 +11,7 @@ import io.toolisticon.annotationprocessortoolkit.tools.corematcher.ValidationMes
  */
 public enum ${annotationName}ProcessorMessages implements ValidationMessage {
 
-
+    // TODO: Replace this by your own error messages
     ERROR_COULD_NOT_CREATE_CLASS("${annotationName}_ERROR_001", "Could not create class ${symbol_dollar}{0} : ${symbol_dollar}{1}"),
     ERROR_VALUE_MUST_NOT_BE_EMPTY("${annotationName}_ERROR_002", "Value must not be empty");
 

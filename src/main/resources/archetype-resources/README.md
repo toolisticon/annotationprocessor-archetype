@@ -1,8 +1,8 @@
-# Bean-Builder
+# ${rootArtifactId} Annotation Processor
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.beanbuilder/beanbuilder-processor/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.beanbuilder/beanbuilder-processor)
-[![Build Status](https://travis-ci.org/toolisticon/bean-builder.svg?branch=master)](https://travis-ci.org/toolisticon/bean-builder)
-[![codecov](https://codecov.io/gh/toolisticon/bean-builder/branch/master/graph/badge.svg)](https://codecov.io/gh/toolisticon/bean-builder)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/${groupId}/${rootArtifactId}/badge.svg)](https://maven-badges.herokuapp.com/maven-central/${groupId}/${rootArtifactId})
+[![Build Status](https://travis-ci.org/toolisticon/${rootArtifactId}.svg?branch=master)](https://travis-ci.org/toolisticon/${rootArtifactId})
+[![codecov](https://codecov.io/gh/toolisticon/${rootArtifactId}/branch/master/graph/badge.svg)](https://codecov.io/gh/toolisticon/${rootArtifactId})
 
 # Why you should use this project?
 
@@ -14,15 +14,19 @@ Annotation processor that
 
 # How does it work?
 
-Just add the ${rootArtifactId} annotation processor dependency to your
-	<dependencies>
-	    <!-- must be on provided scope since it is just needed at compile time -->
-	    <dependency>
-	        <groupId>${groupId}</groupId>
-	        <artifactId>${rootArtifactId}-processor</artifactId>
-	        <scope>provided</scope>
-	    </dependency>
-	</dependencies>
+Just add the ${rootArtifactId} annotation processor dependency to your dependencies
+
+```xml`
+<dependencies>
+    <!-- must be on provided scope since it is just needed at compile time -->
+    <dependency>
+        <groupId>${groupId}</groupId>
+        <artifactId>${rootArtifactId}-processor</artifactId>
+        <version>0.1.0</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
+``
 
 
 ## Preconditions
@@ -33,7 +37,7 @@ Just add the ${rootArtifactId} annotation processor dependency to your
 
 We welcome any kind of suggestions and pull requests.
 
-## Building and developing the Bean-Builder
+## Building and developing the ${rootArtifactId} annotation processor
 
 The ${rootArtifactId} is built using Maven.
 A simple import of the pom in your IDE should get you up and running. To build the ${rootArtifactId} on the commandline, just run `mvn` or `mvn clean install`

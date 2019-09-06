@@ -16,6 +16,8 @@ import javax.tools.StandardLocation;
 
 /**
  * Tests of {@link ${package}.api.${annotationName}}.
+ *
+ * TODO: replace the example testcases with your own testcases
  */
 
 public class ${annotationName}ProcessorTest {

@@ -9,6 +9,9 @@ import org.junit.Test;
 
 /**
  * Unit test for {@link ${annotationName}ProcessorMessages}.
+ *
+ * TODO: replace the example testcases with your own testcases
+ *
  */
 public class ${annotationName}ProcessorMessagesTest {
 

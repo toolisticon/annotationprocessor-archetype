@@ -49,6 +49,10 @@ public class ${annotationName}Processor extends AbstractAnnotationProcessor {
         // process Services annotation
         for (Element element : roundEnv.getElementsAnnotatedWith(${annotationName}.class)) {
 
+            // ----------------------------------------------------------
+            // TODO: replace the following code by your business logic
+            // ----------------------------------------------------------
+
             // Some example validations : Annotation may only be applied on Classes with Noarg constructor.
             FluentElementValidator.createFluentElementValidator(element)
                     .is(CoreMatchers.IS_CLASS)
@@ -79,7 +83,11 @@ public class ${annotationName}Processor extends AbstractAnnotationProcessor {
 
 
     /**
-     * Generates the builder class
+     * Generates a class.
+     *
+     * Example how to use the templating engine.
+     *
+     * TODO: remove this
      *
      * @param typeElement           The TypeElement representing the annotated class
      * @param annotation The ${annotationName} annotation
