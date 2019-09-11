@@ -1,6 +1,6 @@
 # Toolisticon Annotation Processor Maven Archetype
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.archetypes/annotationprocessor-archetype/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.archetypes/annotationprocessor-archetype)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.maven.archetypes/annotationprocessor-archetype/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.maven.archetypes/annotationprocessor-archetype)
 
 This project allows you to setup Toolisticon flavoured and maven based annotation processor projects. 
 
@@ -19,7 +19,7 @@ It will setup a working annotation processor project including
 You just need to create the project by using te following maven command
 
 	mvn archetype:generate 
-    	-DarchetypeGroupId=io.toolisticon.archetypes
+    	-DarchetypeGroupId=io.toolisticon.maven.archetypes
     	-DarchetypeArtifactId=annotationprocessor-archetype
     	-DarchetypeVersion=0.1.0 
     	-DgroupId=<your processor projects group id>
