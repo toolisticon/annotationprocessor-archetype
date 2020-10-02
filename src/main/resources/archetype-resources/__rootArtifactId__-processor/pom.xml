@@ -40,8 +40,8 @@
         </dependency>
 
         <dependency>
-            <groupId>io.toolisticon.compiletesting</groupId>
-            <artifactId>compiletesting</artifactId>
+            <groupId>io.toolisticon.cute</groupId>
+            <artifactId>cute</artifactId>
         </dependency>
 
     </dependencies>

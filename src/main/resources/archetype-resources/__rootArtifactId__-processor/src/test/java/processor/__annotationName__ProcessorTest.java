@@ -5,8 +5,8 @@ package ${package}.processor;
 
 import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
 import io.toolisticon.annotationprocessortoolkit.tools.corematcher.CoreMatcherValidationMessages;
-import io.toolisticon.compiletesting.CompileTestBuilder;
-import io.toolisticon.compiletesting.JavaFileObjectUtils;
+import io.toolisticon.cute.CompileTestBuilder;
+import io.toolisticon.cute.JavaFileObjectUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,7 +41,7 @@ public class ${annotationName}ProcessorTest {
         compileTestBuilder
                 .addSources(JavaFileObjectUtils.readFromResource("testcases/TestcaseValidUsage.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
     }
 
     @Test
@@ -50,8 +50,8 @@ public class ${annotationName}ProcessorTest {
         compileTestBuilder
                 .addSources(JavaFileObjectUtils.readFromResource("testcases/TestcaseInvalidUsageWithEmptyValue.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(${annotationName}ProcessorMessages.ERROR_VALUE_MUST_NOT_BE_EMPTY.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(${annotationName}ProcessorMessages.ERROR_VALUE_MUST_NOT_BE_EMPTY.getCode())
+                .executeTest();
     }
 
     @Test
@@ -60,8 +60,8 @@ public class ${annotationName}ProcessorTest {
         compileTestBuilder
                 .addSources(JavaFileObjectUtils.readFromResource("testcases/TestcaseInvalidUsageOnEnum.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(CoreMatcherValidationMessages.IS_CLASS.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(CoreMatcherValidationMessages.IS_CLASS.getCode())
+                .executeTest();
     }
 
     @Test
@@ -70,8 +70,8 @@ public class ${annotationName}ProcessorTest {
         compileTestBuilder
                 .addSources(JavaFileObjectUtils.readFromResource("testcases/TestcaseInvalidUsageOnInterface.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(CoreMatcherValidationMessages.IS_CLASS.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(CoreMatcherValidationMessages.IS_CLASS.getCode())
+                .executeTest();
     }
 
 
