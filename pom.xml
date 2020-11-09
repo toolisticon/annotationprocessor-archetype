@@ -4,7 +4,7 @@
 
     <groupId>io.toolisticon.maven.archetypes</groupId>
     <artifactId>annotationprocessor-archetype</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
     <packaging>maven-archetype</packaging>
 
     <name>annotationprocessor-archetype</name>
@@ -75,16 +75,4 @@
         <tag>HEAD</tag>
   </scm>
 
-    <distributionManagement>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
