@@ -4,7 +4,7 @@
 package ${package}.processor;
 
 
-import io.toolisticon.annotationprocessortoolkit.tools.corematcher.ValidationMessage;
+import io.toolisticon.aptk.tools.corematcher.ValidationMessage;
 
 /**
  * Messages used by annotation processors.

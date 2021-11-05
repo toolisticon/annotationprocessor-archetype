@@ -21,19 +21,23 @@
             <artifactId>${rootArtifactId}-api</artifactId>
         </dependency>
 
-
         <dependency>
-            <groupId>io.toolisticon.annotationprocessortoolkit</groupId>
-            <artifactId>annotationprocessor</artifactId>
+            <groupId>io.toolisticon.aptk</groupId>
+            <artifactId>tools</artifactId>
         </dependency>
 
+        <!-- annotation processor apis -->
+        <dependency>
+            <groupId>io.toolisticon.aptk</groupId>
+            <artifactId>annotationwrapper-api</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>io.toolisticon.spiap</groupId>
             <artifactId>spiap-api</artifactId>
         </dependency>
 
-
+        <!-- Test dependencies -->
         <dependency>
             <groupId>io.toolisticon.cute</groupId>
             <artifactId>cute</artifactId>
@@ -57,17 +61,10 @@
                             <goal>shade</goal>
                         </goals>
 
-
                         <configuration>
 
-                            <!--
-                            <artifactSet>
-                                <excludes>
-                                    <exclude>io.toolisticon.beanbuilder:beanbuilder-api</exclude>
 
-                                </excludes>
-                            </artifactSet>
-                            -->
+                            <createDependencyReducedPom>true</createDependencyReducedPom>
 
                             <!--
                                 usually you should repackage all referenced 3RD party libraries into your annotation processor jar.
@@ -77,8 +74,8 @@
 
                             <relocations>
                                 <relocation>
-                                    <pattern>io.toolisticon.annotationprocessortoolkit</pattern>
-                                    <shadedPattern>${package}._3rdparty.io.toolisticon.annotationprocessortoolkit
+                                    <pattern>io.toolisticon.aptk</pattern>
+                                    <shadedPattern>${package}._3rdparty.io.toolisticon.aptk
                                     </shadedPattern>
                                 </relocation>
                             </relocations>
@@ -101,6 +98,16 @@
                             <artifactId>spiap-processor</artifactId>
                             <version>${spiap.version}</version>
                         </path>
+                        <path>
+                            <groupId>io.toolisticon.aptk</groupId>
+                            <artifactId>annotationwrapper-processor</artifactId>
+                            <version>${aptk.version}</version>
+                        </path>
+                        <path>
+                            <groupId>io.toolisticon.aptk</groupId>
+                            <artifactId>annotationwrapper-api</artifactId>
+                            <version>${aptk.version}</version>
+                        </path>>
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>

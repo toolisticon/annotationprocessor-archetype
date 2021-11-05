@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>${groupId}</groupId>
@@ -11,13 +12,7 @@
     <!-- TODO: UPDATE URLS -->
     <description>Please refer to https://github.com/toolisticon/${artifactId}</description>
     <url>https://github.com/holisticon/${artifactId}</url>
-
-    <parent>
-        <groupId>io.toolisticon.maven</groupId>
-        <artifactId>maven-oss-parent</artifactId>
-        <version>0.7.0</version>
-    </parent>
-
+    
     <!-- TODO: Add Organisation -->
     <organization>
         <name></name>
@@ -45,7 +40,7 @@
         </license>
     </licenses>
 
-    <inceptionYear>2019</inceptionYear>
+    <inceptionYear>2021</inceptionYear>
 
     <prerequisites>
         <maven>3.6.0</maven>
@@ -66,22 +61,24 @@
     </scm>
 
     <properties>
+        <!-- Common build settings -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <encoding>UTF-8</encoding>
 
+        <!-- Java compiler settings -->
         <java.version>1.7</java.version>
-
         <java.compile.source.version>1.7</java.compile.source.version>
         <java.compile.target.version>1.7</java.compile.target.version>
 
 
-        <cute.version>0.9.0</cute.version>
-        <spiap.version>0.8.0</spiap.version>
-        <annotationProcessorToolkit.version>0.14.4</annotationProcessorToolkit.version>
+        <!-- project dependency versions -->
+        <cute.version>0.11.1</cute.version>
+        <spiap.version>0.8.1</spiap.version>
+        <aptk.version>0.16.0</aptk.version>
 
         <!-- versions of test dependencies -->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13</junit.version>
         <hamcrest.version>2.2</hamcrest.version>
         <mockito.version>2.28.2</mockito.version>
 
@@ -89,39 +86,227 @@
         <!-- plugin versions -->
         <animal-sniffer-maven-plugin.version>1.17</animal-sniffer-maven-plugin.version>
         <maven-assembly-plugin.version>2.4</maven-assembly-plugin.version>
-        <maven-bundle-plugin.version>2.5.3</maven-bundle-plugin.version>
+        <maven-build-helper-plugin.version>3.0.0</maven-build-helper-plugin.version>
+        <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-dependency-plugin.version>3.0.2</maven-dependency-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
         <maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version>
+        <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>    <!-- do not change to 1.6, it fails! -->
+        <maven-help-plugin.version>2.2</maven-help-plugin.version>
+        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
         <maven-jacoco-plugin.version>0.8.5</maven-jacoco-plugin.version>
+        <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
         <maven-processor-plugin.version>2.2.4</maven-processor-plugin.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+        <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+        <maven-shade-plugin.version>3.1.0</maven-shade-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-site-plugin.version>3.7</maven-site-plugin.version>
         <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
-
-        <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
-
+        <maven-versions-plugin.version>2.5</maven-versions-plugin.version>
 
     </properties>
 
 
+
     <build>
         <defaultGoal>clean install</defaultGoal>
+
+
+        <!--
+                                      _             _
+            ___ ___  _ __ ___   _ __ | |_   _  __ _(_)_ __  ___
+           / __/ _ \| '__/ _ \ | '_ \| | | | |/ _` | | '_ \/ __|
+          | (_| (_) | | |  __/ | |_) | | |_| | (_| | | | | \__ \
+           \___\___/|_|  \___| | .__/|_|\__,_|\__, |_|_| |_|___/
+                               |_|            |___/
+
+          define plugins in latest version - alphabetical order
+
+        // -->
+        <pluginManagement>
+            <plugins>
+
+                <!-- processor plugin s-->
+                <plugin>
+                    <groupId>org.bsc.maven</groupId>
+                    <artifactId>maven-processor-plugin</artifactId>
+                    <version>${maven-processor-plugin.version}</version>
+                </plugin>
+
+                <!-- assembly plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin.version}</version>
+                </plugin>
+
+                <!-- build helper -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${maven-build-helper-plugin.version}</version>
+                </plugin>
+                <!-- clean -->
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven-clean-plugin.version}</version>
+                </plugin>
+                <!-- compile -->
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.compile.source.version}</source>
+                        <target>${java.compile.target.version}</target>
+                    </configuration>
+                </plugin>
+                <!-- dependency -->
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${maven-dependency-plugin.version}</version>
+                </plugin>
+                <!-- deploy -->
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven-deploy-plugin.version}</version>
+                    <configuration>
+                        <skip>${toolisticon.deployment.skip}</skip>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven</artifactId>
+                    <version>${maven-docker-plugin.version}</version>
+                </plugin>
+                <!-- enforcer -->
+                <plugin>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${maven-enforcer-plugin.version}</version>
+                </plugin>
+                <!-- failsafe -->
+                <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven-failsafe-plugin.version}</version>
+                </plugin>
+                <!-- artefact signing -->
+                <plugin>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven-gpg-plugin.version}</version>
+                </plugin>
+                <!-- help -->
+                <plugin>
+                    <artifactId>maven-help-plugin</artifactId>
+                    <version>${maven-help-plugin.version}</version>
+                </plugin>
+                <!-- install -->
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${maven-install-plugin.version}</version>
+                </plugin>
+                <!-- jacoco - test coverage -->
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${maven-jacoco-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- jar -->
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <!-- javadoc -->
+                <plugin>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                </plugin>
+                <!-- release -->
+                <plugin>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>2.9</version>
+                    <configuration>
+                        <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                    </configuration>
+                </plugin>
+                <!-- resources -->
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                    <configuration>
+                        <encoding>${toolisticon.encoding}</encoding>
+                    </configuration>
+                </plugin>
+                <!-- shade -->
+                <plugin>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>${maven-shade-plugin.version}</version>
+                </plugin>
+                <!-- site -->
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
+                <!-- sources -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+                <!-- surefire -->
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                </plugin>
+                <!-- version -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${maven-versions-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+
             <plugin>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <executions>
@@ -133,7 +318,7 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>[3.0.4,)</version>
+                                    <version>[3.6.0,)</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
                                     <version>${java.compile.source.version}</version>
@@ -146,7 +331,7 @@
                                     <includes>
                                         <include>${groupId}:*</include>
                                         <include>io.toolisticon.spiap:*</include>
-                                        <include>io.toolisticon.annotationprocessortoolkit:*</include>
+                                        <include>io.toolisticon.aptk:*</include>
                                         <include>*:*:*:*:test:*</include>
                                         <include>*:*:*:*:provided:*</include>
                                     </includes>
@@ -155,11 +340,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
             </plugin>
 
             <plugin>
@@ -174,64 +354,8 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.compile.source.version}</source>
-                    <target>${java.compile.target.version}</target>
-                </configuration>
-            </plugin>
-
-
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>${java.compile.source.version}</source>
-                        <target>${java.compile.target.version}</target>
-                    </configuration>
-                </plugin>
 
-                <plugin>
-                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <configuration>
-                        <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-                    </configuration>
-                </plugin>
-
-
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${maven-jacoco-plugin.version}</version>
-                </plugin>
-
-                <plugin>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${maven-failsafe-plugin.version}</version>
-                </plugin>
-
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven-surefire-plugin.version}</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.bsc.maven</groupId>
-                    <artifactId>maven-processor-plugin</artifactId>
-                    <version>${maven-processor-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>${maven-assembly-plugin.version}</version>
-                </plugin>
-
-
-            </plugins>
-        </pluginManagement>
     </build>
 
     <profiles>
@@ -283,7 +407,8 @@
                                 <id>validate</id>
                                 <phase>validate</phase>
                                 <configuration>
-                                    <configLocation>${session.executionRootDirectory}/config/sun_checks.xml</configLocation>
+                                    <configLocation>${session.executionRootDirectory}/config/sun_checks.xml
+                                    </configLocation>
                                     <encoding>UTF-8</encoding>
                                     <consoleOutput>true</consoleOutput>
                                     <failOnViolation>true</failOnViolation>
@@ -305,6 +430,35 @@
             </build>
         </profile>
         <profile>
+            <!--
+                 this profile enables creation of ASC signatures
+                 during release perform phase of maven-release-plugin
+            -->
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>ReleaseJavadoc</id>
             <build>
                 <plugins>
@@ -321,6 +475,33 @@
 
         </profile>
     </profiles>
+
+    <repositories>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
 
@@ -357,6 +538,7 @@
                 <groupId>${groupId}</groupId>
                 <artifactId>${rootArtifactId}-api</artifactId>
                 <version>${project.version}</version>
+                <scope>provided</scope>
             </dependency>
 
             <dependency>
@@ -366,36 +548,40 @@
             </dependency>
 
             <dependency>
+                <groupId>io.toolisticon.aptk</groupId>
+                <artifactId>tools</artifactId>
+                <version>${aptk.version}</version>
+            </dependency>
+
+            <!-- Compile only dependencies - for example needed by annotation processors -->
+
+            <dependency>
+                <groupId>io.toolisticon.aptk</groupId>
+                <artifactId>annotationwrapper-api</artifactId>
+                <version>${aptk.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>io.toolisticon.spiap</groupId>
                 <artifactId>spiap-api</artifactId>
                 <version>${spiap.version}</version>
                 <scope>provided</scope>
             </dependency>
 
-            <dependency>
-                <groupId>io.toolisticon.spiap</groupId>
-                <artifactId>spiap-processor</artifactId>
-                <version>${spiap.version}</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>io.toolisticon.annotationprocessortoolkit</groupId>
-                <artifactId>annotationprocessor</artifactId>
-                <version>${annotationProcessorToolkit.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.toolisticon.annotationprocessortoolkit</groupId>
-                <artifactId>testhelper</artifactId>
-                <version>${annotationProcessorToolkit.version}</version>
-                <scope>test</scope>
-            </dependency>
+            <!-- Test dependencies -->
 
             <dependency>
                 <groupId>io.toolisticon.cute</groupId>
                 <artifactId>cute</artifactId>
                 <version>${cute.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.toolisticon.aptk</groupId>
+                <artifactId>cute</artifactId>
+                <version>${aptk.version}</version>
                 <scope>test</scope>
             </dependency>
 

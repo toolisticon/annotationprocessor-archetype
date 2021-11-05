@@ -14,12 +14,6 @@
 
     <name>${artifactId}</name>
 
-
-    <dependencyManagement>
-
-    </dependencyManagement>
-
-
     <build>
 
         <pluginManagement>
@@ -92,9 +86,13 @@
 
         <dependency>
             <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-processor</artifactId>
+            <artifactId>${rootArtifactId}-api</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-processor</artifactId>
+        </dependency>
 
     </dependencies>
 
