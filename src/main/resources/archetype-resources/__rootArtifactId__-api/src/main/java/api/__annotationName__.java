@@ -17,7 +17,7 @@ import java.lang.annotation.Target;
  * Demo annotation is used to create a class and must contain a non empty value.
  *
  */
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.RUNTIME)
 @Target(value = {ElementType.TYPE})
 @Documented
 public @interface ${annotationName} {

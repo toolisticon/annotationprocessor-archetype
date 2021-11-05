@@ -5,13 +5,13 @@ package ${package}.processor;
 
 import ${package}.api.${annotationName};
 
-import io.toolisticon.annotationprocessortoolkit.AbstractAnnotationProcessor;
-import io.toolisticon.annotationprocessortoolkit.tools.ElementUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.FilerUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.corematcher.CoreMatchers;
-import io.toolisticon.annotationprocessortoolkit.tools.fluentvalidator.FluentElementValidator;
-import io.toolisticon.annotationprocessortoolkit.tools.generators.SimpleJavaWriter;
+import io.toolisticon.aptk.tools.AbstractAnnotationProcessor;
+import io.toolisticon.aptk.tools.ElementUtils;
+import io.toolisticon.aptk.tools.FilerUtils;
+import io.toolisticon.aptk.tools.MessagerUtils;
+import io.toolisticon.aptk.tools.corematcher.CoreMatchers;
+import io.toolisticon.aptk.tools.fluentvalidator.FluentElementValidator;
+import io.toolisticon.aptk.tools.generators.SimpleJavaWriter;
 import io.toolisticon.spiap.api.Service;
 
 import javax.annotation.processing.Processor;
@@ -65,7 +65,7 @@ public class ${annotationName}Processor extends AbstractAnnotationProcessor {
             TypeElement typeElement = (TypeElement) element;
 
             // get annotation
-            ${annotationName} annotation = typeElement.getAnnotation(${annotationName}.class);
+            ${annotationName}Wrapper annotation = ${annotationName}Wrapper.wrap(typeElement);
 
             if(annotation.value().isEmpty()) {
                 MessagerUtils.error(typeElement, ${annotationName}ProcessorMessages.ERROR_VALUE_MUST_NOT_BE_EMPTY);
@@ -92,7 +92,7 @@ public class ${annotationName}Processor extends AbstractAnnotationProcessor {
      * @param typeElement           The TypeElement representing the annotated class
      * @param annotation The ${annotationName} annotation
      */
-    private void createClass(TypeElement typeElement, ${annotationName} annotation) {
+    private void createClass(TypeElement typeElement, ${annotationName}Wrapper annotation) {
 
 
         // Now create class
