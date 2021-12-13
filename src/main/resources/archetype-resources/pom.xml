@@ -12,7 +12,7 @@
     <!-- TODO: UPDATE URLS -->
     <description>Please refer to https://github.com/toolisticon/${artifactId}</description>
     <url>https://github.com/holisticon/${artifactId}</url>
-    
+
     <!-- TODO: Add Organisation -->
     <organization>
         <name></name>
@@ -75,10 +75,10 @@
         <!-- project dependency versions -->
         <cute.version>0.11.1</cute.version>
         <spiap.version>0.8.1</spiap.version>
-        <aptk.version>0.16.0</aptk.version>
+        <aptk.version>0.18.0</aptk.version>
 
         <!-- versions of test dependencies -->
-        <junit.version>4.13</junit.version>
+        <junit.version>4.13.1</junit.version>
         <hamcrest.version>2.2</hamcrest.version>
         <mockito.version>2.28.2</mockito.version>
 
@@ -109,7 +109,6 @@
         <maven-versions-plugin.version>2.5</maven-versions-plugin.version>
 
     </properties>
-
 
 
     <build>
@@ -549,7 +548,7 @@
 
             <dependency>
                 <groupId>io.toolisticon.aptk</groupId>
-                <artifactId>tools</artifactId>
+                <artifactId>aptk-tools</artifactId>
                 <version>${aptk.version}</version>
             </dependency>
 
@@ -557,7 +556,7 @@
 
             <dependency>
                 <groupId>io.toolisticon.aptk</groupId>
-                <artifactId>annotationwrapper-api</artifactId>
+                <artifactId>aptk-annotationwrapper-api</artifactId>
                 <version>${aptk.version}</version>
                 <scope>provided</scope>
             </dependency>
@@ -580,7 +579,7 @@
 
             <dependency>
                 <groupId>io.toolisticon.aptk</groupId>
-                <artifactId>cute</artifactId>
+                <artifactId>aptk-cute</artifactId>
                 <version>${aptk.version}</version>
                 <scope>test</scope>
             </dependency>

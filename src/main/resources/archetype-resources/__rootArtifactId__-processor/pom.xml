@@ -23,13 +23,13 @@
 
         <dependency>
             <groupId>io.toolisticon.aptk</groupId>
-            <artifactId>tools</artifactId>
+            <artifactId>aptk-tools</artifactId>
         </dependency>
 
         <!-- annotation processor apis -->
         <dependency>
             <groupId>io.toolisticon.aptk</groupId>
-            <artifactId>annotationwrapper-api</artifactId>
+            <artifactId>aptk-annotationwrapper-api</artifactId>
         </dependency>
 
         <dependency>
@@ -100,12 +100,12 @@
                         </path>
                         <path>
                             <groupId>io.toolisticon.aptk</groupId>
-                            <artifactId>annotationwrapper-processor</artifactId>
+                            <artifactId>aptk-annotationwrapper-processor</artifactId>
                             <version>${aptk.version}</version>
                         </path>
                         <path>
                             <groupId>io.toolisticon.aptk</groupId>
-                            <artifactId>annotationwrapper-api</artifactId>
+                            <artifactId>aptk-annotationwrapper-api</artifactId>
                             <version>${aptk.version}</version>
                         </path>>
                     </annotationProcessorPaths>
