@@ -75,7 +75,7 @@
         <!-- project dependency versions -->
         <cute.version>0.11.1</cute.version>
         <spiap.version>0.8.1</spiap.version>
-        <aptk.version>0.16.0</aptk.version>
+        <aptk.version>0.18.0</aptk.version>
 
         <!-- versions of test dependencies -->
         <junit.version>4.13</junit.version>
@@ -549,7 +549,7 @@
 
             <dependency>
                 <groupId>io.toolisticon.aptk</groupId>
-                <artifactId>tools</artifactId>
+                <artifactId>aptk-tools</artifactId>
                 <version>${aptk.version}</version>
             </dependency>
 
@@ -557,7 +557,7 @@
 
             <dependency>
                 <groupId>io.toolisticon.aptk</groupId>
-                <artifactId>annotationwrapper-api</artifactId>
+                <artifactId>aptk-annotationwrapper-api</artifactId>
                 <version>${aptk.version}</version>
                 <scope>provided</scope>
             </dependency>
@@ -580,7 +580,7 @@
 
             <dependency>
                 <groupId>io.toolisticon.aptk</groupId>
-                <artifactId>cute</artifactId>
+                <artifactId>aptk-cute</artifactId>
                 <version>${aptk.version}</version>
                 <scope>test</scope>
             </dependency>
