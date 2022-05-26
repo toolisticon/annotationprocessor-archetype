@@ -12,7 +12,7 @@ import io.toolisticon.aptk.tools.MessagerUtils;
 import io.toolisticon.aptk.tools.corematcher.CoreMatchers;
 import io.toolisticon.aptk.tools.fluentvalidator.FluentElementValidator;
 import io.toolisticon.aptk.tools.generators.SimpleJavaWriter;
-import io.toolisticon.spiap.api.Service;
+import io.toolisticon.spiap.api.SpiService;
 
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
@@ -33,7 +33,7 @@ import java.util.Set;
  * This demo processor does some validations and creates a class.
  */
 
-@Service(Processor.class)
+@SpiService(Processor.class)
 public class ${annotationName}Processor extends AbstractAnnotationProcessor {
 
     private final static Set<String> SUPPORTED_ANNOTATIONS = createSupportedAnnotationSet(${annotationName}.class);
