@@ -18,14 +18,14 @@ It will setup a working annotation processor project including
 
 You just need to create the project by using te following maven command
 
-	mvn archetype:generate 
-    	-DarchetypeGroupId=io.toolisticon.maven.archetypes
-    	-DarchetypeArtifactId=annotationprocessor-archetype
-    	-DarchetypeVersion=0.1.0 
-    	-DgroupId=<your processor projects group id>
-    	-DartifactId=<your processor projects artifact id>
-    	-Dversion=<your version number>
-    	-Dpackage=<your processor projects base package>
+	mvn archetype:generate \
+    	-DarchetypeGroupId=io.toolisticon.maven.archetypes \
+    	-DarchetypeArtifactId=annotationprocessor-archetype \
+    	-DarchetypeVersion=0.6.0 \
+    	-DgroupId=<your processor projects group id> \
+    	-DartifactId=<your processor projects artifact id> \
+    	-Dversion=<your version number> \
+    	-Dpackage=<your processor projects base package> \
     	-DannotationName=<the name of your annotation that should be processed>
     	
 
