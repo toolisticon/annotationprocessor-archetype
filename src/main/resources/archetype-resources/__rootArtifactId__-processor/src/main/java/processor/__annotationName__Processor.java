@@ -9,7 +9,7 @@ import io.toolisticon.aptk.tools.AbstractAnnotationProcessor;
 import io.toolisticon.aptk.tools.ElementUtils;
 import io.toolisticon.aptk.tools.FilerUtils;
 import io.toolisticon.aptk.tools.MessagerUtils;
-import io.toolisticon.aptk.tools.corematcher.CoreMatchers;
+import io.toolisticon.aptk.tools.corematcher.AptkCoreMatchers;
 import io.toolisticon.aptk.tools.fluentvalidator.FluentElementValidator;
 import io.toolisticon.aptk.tools.generators.SimpleJavaWriter;
 import io.toolisticon.spiap.api.SpiService;
@@ -55,8 +55,8 @@ public class ${annotationName}Processor extends AbstractAnnotationProcessor {
 
             // Some example validations : Annotation may only be applied on Classes with Noarg constructor.
             FluentElementValidator.createFluentElementValidator(element)
-                    .is(CoreMatchers.IS_CLASS)
-                    .applyValidator(CoreMatchers.HAS_PUBLIC_NOARG_CONSTRUCTOR)
+                    .is(AptkCoreMatchers.IS_CLASS)
+                    .applyValidator(AptkCoreMatchers.HAS_PUBLIC_NOARG_CONSTRUCTOR)
                     .validateAndIssueMessages();
 
 
