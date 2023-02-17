@@ -12,6 +12,7 @@ import io.toolisticon.aptk.tools.MessagerUtils;
 import io.toolisticon.aptk.tools.corematcher.AptkCoreMatchers;
 import io.toolisticon.aptk.tools.fluentvalidator.FluentElementValidator;
 import io.toolisticon.aptk.tools.generators.SimpleJavaWriter;
+import io.toolisticon.aptk.tools.wrapper.TypeElementWrapper;
 import io.toolisticon.spiap.api.SpiService;
 
 import javax.annotation.processing.Processor;
@@ -46,41 +47,58 @@ public class ${annotationName}Processor extends AbstractAnnotationProcessor {
     @Override
     public boolean processAnnotations(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 
-        // process Services annotation
-        for (Element element : roundEnv.getElementsAnnotatedWith(${annotationName}.class)) {
+        if (!roundEnv.processingOver()) {
+            // process Services annotation
+            for (Element element : roundEnv.getElementsAnnotatedWith(${annotationName}.class)) {
 
-            // ----------------------------------------------------------
-            // TODO: replace the following code by your business logic
-            // ----------------------------------------------------------
+                TypeElementWrapper wrappedTypeElement = TypeElementWrapper.wrap((TypeElement) element);
+                ${annotationName}Wrapper annotation = ${annotationName}Wrapper.wrap(wrappedTypeElement.unwrap());
 
-            // Some example validations : Annotation may only be applied on Classes with Noarg constructor.
-            FluentElementValidator.createFluentElementValidator(element)
-                    .is(AptkCoreMatchers.IS_CLASS)
-                    .applyValidator(AptkCoreMatchers.HAS_PUBLIC_NOARG_CONSTRUCTOR)
-                    .validateAndIssueMessages();
+                if (validateUsage(wrappedTypeElement, annotation)) {
+                    processAnnotation(wrappedTypeElement, annotation);
+                }
 
-
-
-            // It's safe to cast to TypeElement now
-            TypeElement typeElement = (TypeElement) element;
-
-            // get annotation
-            ${annotationName}Wrapper annotation = ${annotationName}Wrapper.wrap(typeElement);
-
-            if(annotation.value().isEmpty()) {
-                MessagerUtils.error(typeElement, ${annotationName}ProcessorMessages.ERROR_VALUE_MUST_NOT_BE_EMPTY);
-                continue;
             }
 
-            // Now get all attributes
-            createClass(typeElement, annotation);
+        } else {
+
+            // ProcessingOver round
 
         }
-
         return false;
 
     }
 
+    void processAnnotation(TypeElementWrapper wrappedTypeElement, ${annotationName}Wrapper annotation) {
+
+        // ----------------------------------------------------------
+        // TODO: replace the following code by your business logic
+        // ----------------------------------------------------------
+
+        createClass(wrappedTypeElement, annotation);
+
+    }
+
+
+    boolean validateUsage(TypeElementWrapper wrappedTypeElement, ${annotationName}Wrapper annotation) {
+
+        // ----------------------------------------------------------
+        // TODO: replace the following code by your business logic
+        // ----------------------------------------------------------
+
+        // Some example validations : Annotation may only be applied on Classes with Noarg constructor.
+        boolean result = wrappedTypeElement.validateWithFluentElementValidator()
+            .is(AptkCoreMatchers.IS_CLASS)
+            .applyValidator(AptkCoreMatchers.HAS_PUBLIC_NOARG_CONSTRUCTOR)
+            .validateAndIssueMessages();
+
+        if(annotation.value().isEmpty()) {
+            wrappedTypeElement.compilerMessage().asError().write(${annotationName}ProcessorMessages.ERROR_VALUE_MUST_NOT_BE_EMPTY);
+            result = false;
+        }
+        return result;
+
+    }
 
     /**
      * Generates a class.
@@ -89,14 +107,14 @@ public class ${annotationName}Processor extends AbstractAnnotationProcessor {
      *
      * TODO: remove this
      *
-     * @param typeElement           The TypeElement representing the annotated class
+     * @param wrappedTypeElement           The TypeElement representing the annotated class
      * @param annotation The ${annotationName} annotation
      */
-    private void createClass(TypeElement typeElement, ${annotationName}Wrapper annotation) {
+    private void createClass(TypeElementWrapper wrappedTypeElement, ${annotationName}Wrapper annotation) {
 
 
         // Now create class
-        String packageName = ((PackageElement) ElementUtils.AccessEnclosingElements.getFirstEnclosingElementOfKind(typeElement, ElementKind.PACKAGE)).getQualifiedName().toString();
+        String packageName = wrappedTypeElement.getPackageName();
         String className = annotation.value();
 
         // Fill Model
@@ -107,11 +125,11 @@ public class ${annotationName}Processor extends AbstractAnnotationProcessor {
         // create the class
         String filePath = packageName + "." + className;
         try {
-            SimpleJavaWriter javaWriter = FilerUtils.createSourceFile(filePath, typeElement);
+            SimpleJavaWriter javaWriter = FilerUtils.createSourceFile(filePath, wrappedTypeElement.unwrap());
             javaWriter.writeTemplate("/${annotationName}.tpl", model);
             javaWriter.close();
         } catch (IOException e) {
-            MessagerUtils.error(typeElement, ${annotationName}ProcessorMessages.ERROR_COULD_NOT_CREATE_CLASS, filePath, e.getMessage());
+            wrappedTypeElement.compilerMessage().asError().write(${annotationName}ProcessorMessages.ERROR_COULD_NOT_CREATE_CLASS, filePath, e.getMessage());
         }
     }
 
