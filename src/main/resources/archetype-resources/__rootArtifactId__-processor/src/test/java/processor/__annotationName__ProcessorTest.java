@@ -50,7 +50,7 @@ public class ${annotationName}ProcessorTest {
         compileTestBuilder
                 .addSources(JavaFileObjectUtils.readFromResource("testcases/TestcaseInvalidUsageWithEmptyValue.java"))
                 .compilationShouldFail()
-                .expectErrorMessageThatContains(${annotationName}ProcessorMessages.ERROR_VALUE_MUST_NOT_BE_EMPTY.getCode())
+                .expectErrorMessageThatContains(${annotationName}ProcessorCompilerMessages.ERROR_VALUE_MUST_NOT_BE_EMPTY.getCode())
                 .executeTest();
     }
 
