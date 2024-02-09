@@ -5,13 +5,11 @@ package ${package}.processor;
 
 import io.toolisticon.aptk.tools.MessagerUtils;
 import io.toolisticon.aptk.tools.corematcher.CoreMatcherValidationMessages;
-import io.toolisticon.cute.CompileTestBuilder;
-import io.toolisticon.cute.JavaFileObjectUtils;
+import io.toolisticon.cute.Cute;
+import io.toolisticon.cute.CuteApi;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.tools.JavaFileObject;
-import javax.tools.StandardLocation;
 
 
 /**
@@ -23,15 +21,16 @@ import javax.tools.StandardLocation;
 public class ${annotationName}ProcessorTest {
 
 
-    CompileTestBuilder.CompilationTestBuilder compileTestBuilder;
+    CuteApi.BlackBoxTestSourceFilesInterface compileTestBuilder;
 
     @Before
     public void init() {
         MessagerUtils.setPrintMessageCodes(true);
 
-        compileTestBuilder = CompileTestBuilder
-                .compilationTest()
-                .addProcessors(${annotationName}Processor.class);
+        compileTestBuilder = Cute
+                .blackBoxTest()
+                .given()
+                .processors(${annotationName}Processor.class);
     }
 
 
@@ -39,8 +38,9 @@ public class ${annotationName}ProcessorTest {
     public void test_valid_usage() {
 
         compileTestBuilder
-                .addSources(JavaFileObjectUtils.readFromResource("testcases/TestcaseValidUsage.java"))
-                .compilationShouldSucceed()
+                .andSourceFiles("testcases/TestcaseValidUsage.java")
+                .whenCompiled()
+                .thenExpectThat().compilationSucceeds()
                 .executeTest();
     }
 
@@ -48,9 +48,10 @@ public class ${annotationName}ProcessorTest {
     public void test_invalid_usage_with_empty_value() {
 
         compileTestBuilder
-                .addSources(JavaFileObjectUtils.readFromResource("testcases/TestcaseInvalidUsageWithEmptyValue.java"))
-                .compilationShouldFail()
-                .expectErrorMessageThatContains(${annotationName}ProcessorMessages.ERROR_VALUE_MUST_NOT_BE_EMPTY.getCode())
+                .andSourceFiles("testcases/TestcaseInvalidUsageWithEmptyValue.java")
+                .whenCompiled()
+                .thenExpectThat().compilationFails()
+                .andThat().compilerMessage().ofKindError().contains(${annotationName}ProcessorCompilerMessages.ERROR_VALUE_MUST_NOT_BE_EMPTY.getCode())
                 .executeTest();
     }
 
@@ -58,9 +59,10 @@ public class ${annotationName}ProcessorTest {
     public void test_invalid_usage_on_enum() {
 
         compileTestBuilder
-                .addSources(JavaFileObjectUtils.readFromResource("testcases/TestcaseInvalidUsageOnEnum.java"))
-                .compilationShouldFail()
-                .expectErrorMessageThatContains(CoreMatcherValidationMessages.IS_CLASS.getCode())
+                .andSourceFiles("testcases/TestcaseInvalidUsageOnEnum.java")
+                .whenCompiled()
+                .thenExpectThat().compilationFails()
+                .andThat().compilerMessage().ofKindError().contains(CoreMatcherValidationMessages.IS_CLASS.getCode())
                 .executeTest();
     }
 
@@ -68,9 +70,10 @@ public class ${annotationName}ProcessorTest {
     public void test_Test_invalid_usage_on_interface() {
 
         compileTestBuilder
-                .addSources(JavaFileObjectUtils.readFromResource("testcases/TestcaseInvalidUsageOnInterface.java"))
-                .compilationShouldFail()
-                .expectErrorMessageThatContains(CoreMatcherValidationMessages.IS_CLASS.getCode())
+                .andSourceFiles("testcases/TestcaseInvalidUsageOnInterface.java")
+                .whenCompiled()
+                .thenExpectThat().compilationFails()
+                .andThat().compilerMessage().ofKindError().contains(CoreMatcherValidationMessages.IS_CLASS.getCode())
                 .executeTest();
     }
 

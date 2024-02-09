@@ -5,6 +5,8 @@ package ${package}.processor;
 
 import ${package}.api.${annotationName};
 
+import io.toolisticon.aptk.compilermessage.api.DeclareCompilerMessage;
+import io.toolisticon.aptk.compilermessage.api.DeclareCompilerMessageCodePrefix;
 import io.toolisticon.aptk.tools.AbstractAnnotationProcessor;
 import io.toolisticon.aptk.tools.ElementUtils;
 import io.toolisticon.aptk.tools.FilerUtils;
@@ -35,6 +37,7 @@ import java.util.Set;
  */
 
 @SpiService(Processor.class)
+@DeclareCompilerMessageCodePrefix("${annotationName}")
 public class ${annotationName}Processor extends AbstractAnnotationProcessor {
 
     private final static Set<String> SUPPORTED_ANNOTATIONS = createSupportedAnnotationSet(${annotationName}.class);
@@ -79,7 +82,7 @@ public class ${annotationName}Processor extends AbstractAnnotationProcessor {
 
     }
 
-
+    @DeclareCompilerMessage(code = "ERROR_002", enumValueName = "ERROR_VALUE_MUST_NOT_BE_EMPTY", message = "Value must not be empty")
     boolean validateUsage(TypeElementWrapper wrappedTypeElement, ${annotationName}Wrapper annotation) {
 
         // ----------------------------------------------------------
@@ -93,7 +96,7 @@ public class ${annotationName}Processor extends AbstractAnnotationProcessor {
             .validateAndIssueMessages();
 
         if(annotation.value().isEmpty()) {
-            wrappedTypeElement.compilerMessage().asError().write(${annotationName}ProcessorMessages.ERROR_VALUE_MUST_NOT_BE_EMPTY);
+            wrappedTypeElement.compilerMessage().asError().write(${annotationName}ProcessorCompilerMessages.ERROR_VALUE_MUST_NOT_BE_EMPTY);
             result = false;
         }
         return result;
@@ -110,6 +113,7 @@ public class ${annotationName}Processor extends AbstractAnnotationProcessor {
      * @param wrappedTypeElement           The TypeElement representing the annotated class
      * @param annotation The ${annotationName} annotation
      */
+    @DeclareCompilerMessage(code = "ERROR_001", enumValueName = "ERROR_COULD_NOT_CREATE_CLASS", message = "Could not create class ${symbol_dollar}{0} : ${symbol_dollar}{1}")
     private void createClass(TypeElementWrapper wrappedTypeElement, ${annotationName}Wrapper annotation) {
 
 
@@ -129,7 +133,7 @@ public class ${annotationName}Processor extends AbstractAnnotationProcessor {
             javaWriter.writeTemplate("/${annotationName}.tpl", model);
             javaWriter.close();
         } catch (IOException e) {
-            wrappedTypeElement.compilerMessage().asError().write(${annotationName}ProcessorMessages.ERROR_COULD_NOT_CREATE_CLASS, filePath, e.getMessage());
+            wrappedTypeElement.compilerMessage().asError().write(${annotationName}ProcessorCompilerMessages.ERROR_COULD_NOT_CREATE_CLASS, filePath, e.getMessage());
         }
     }
 
