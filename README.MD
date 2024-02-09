@@ -34,7 +34,7 @@ Pojo classes you want to create a builder for must be annotated with the Builder
 
 One hint: some IDEs doesn't work properly with annotation processors.
 This is usually caused by incremental builds or insufficient configuration.
-A simple workaround is to build from command line inbetween, usually generated classes will be picked up automatically from target folder afterwards.
+A simple workaround is to build from command line inbetween, usually generated classes will be picked up automatically from the target folder afterwards.
 
 
 # Contributing
