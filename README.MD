@@ -21,7 +21,7 @@ You just need to create the project by using te following maven command
 	mvn archetype:generate \
     	-DarchetypeGroupId=io.toolisticon.maven.archetypes \
     	-DarchetypeArtifactId=annotationprocessor-archetype \
-    	-DarchetypeVersion=0.8.0 \
+    	-DarchetypeVersion=0.9.0 \
     	-DgroupId=<your processor projects group id> \
     	-DartifactId=<your processor projects artifact id> \
     	-Dversion=<your version number> \
@@ -31,6 +31,11 @@ You just need to create the project by using te following maven command
 
 
 Pojo classes you want to create a builder for must be annotated with the Builder annotation.
+
+One hint: some IDEs doesn't work properly with annotation processors.
+This is usually caused by incremental builds or insufficient configuration.
+A simple workaround is to build from command line inbetween, usually generated classes will be picked up automatically from the target folder afterwards.
+
 
 # Contributing
 
