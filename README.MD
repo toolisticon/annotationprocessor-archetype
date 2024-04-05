@@ -21,7 +21,7 @@ You just need to create the project by using te following maven command
 	mvn archetype:generate \
     	-DarchetypeGroupId=io.toolisticon.maven.archetypes \
     	-DarchetypeArtifactId=annotationprocessor-archetype \
-    	-DarchetypeVersion=0.9.0 \
+    	-DarchetypeVersion=0.10.0 \
     	-DgroupId=<your processor projects group id> \
     	-DartifactId=<your processor projects artifact id> \
     	-Dversion=<your version number> \
