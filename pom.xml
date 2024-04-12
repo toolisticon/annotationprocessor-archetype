@@ -4,7 +4,7 @@
 
     <groupId>io.toolisticon.maven.archetypes</groupId>
     <artifactId>annotationprocessor-archetype</artifactId>
-    <version>0.10.1-SNAPSHOT</version>
+    <version>0.11.0</version>
     <packaging>maven-archetype</packaging>
 
     <name>annotationprocessor-archetype</name>
